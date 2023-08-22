@@ -7,9 +7,7 @@ public class Main {public static void main(String[] args) throws ScannerExceptio
     Scanner scn = new Scanner(System.in);
     System.out.print("Введите выражение: ");
     String exp = scn.nextLine();
-    if( exp.length() > 3) {
-        throw new ScannerException("арифметическим выражение должно быть между двумя числами");
-    }
+    
     int actionIndex=-1;
     for (int i = 0; i < actions.length; i++) {
         if(exp.contains(actions[i])){
@@ -21,7 +19,9 @@ public class Main {public static void main(String[] args) throws ScannerExceptio
         throw new ScannerException("Некорректное выражение");
     }
     String[] data = exp.split(regexActions[actionIndex]);
-
+if (data.length > 2){
+        throw new ScannerException("арифметическим выражение должно быть между двумя числами");
+    }
     if(converter.isRoman(data[0]) == converter.isRoman(data[1])){
         int a,b;
         boolean isRoman = converter.isRoman(data[0]);
